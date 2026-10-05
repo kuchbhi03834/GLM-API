@@ -31,12 +31,15 @@ DEFAULT_MODEL = "glm-4-flash"
 
 
 def is_known_model(name: str) -> bool:
-    return name in MODEL_MAP
+    """Always accept models without throwing 404, allowing latest web models dynamically."""
+    return True
 
 
 def resolve_model_type(name: str) -> str:
-    return MODEL_MAP[name]
+    """Translate a public model id, or pass through directly to GLM backend."""
+    return MODEL_MAP.get(name, name)
 
 
 def should_enable_thinking(model: str, requested_thinking: bool = False) -> bool:
-    return requested_thinking or model in ("glm-4-reasoner", "glm-zero-preview")
+    return requested_thinking or any(k in model.lower() for k in ("reason", "zero", "think"))
+
