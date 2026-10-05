@@ -1,0 +1,9 @@
+# --- Core Dependencies for GLM-API ---
+playwright>=1.44        # browser automation for web login & session capture
+httpx>=0.27             # async HTTP client for streaming
+fastapi>=0.111          # OpenAI-compatible server
+uvicorn[standard]>=0.30 # ASGI server
+pydantic>=2.7           # request/response schemas
+python-dotenv>=1.0      # load configuration from .env
+openai                  # testing & OpenAI client compatibility
+PyJWT>=2.8              # optional token signing for Zhipu BigModel API
